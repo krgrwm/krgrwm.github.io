@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on test</title>
+    <title>Tags on krgrwm&#39;s site</title>
     <link>https://krgrwm.github.io/tags/</link>
-    <description>Recent content in Tags on test</description>
+    <description>Recent content in Tags on krgrwm&#39;s site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 20 May 2018 15:18:54 +0900</lastBuildDate>
@@ -17,6 +17,24 @@
       <pubDate>Sun, 20 May 2018 15:18:54 +0900</pubDate>
       
       <guid>https://krgrwm.github.io/tags/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tag1</title>
+      <link>https://krgrwm.github.io/tags/tag1/</link>
+      <pubDate>Sun, 20 May 2018 15:35:46 +0900</pubDate>
+      
+      <guid>https://krgrwm.github.io/tags/tag1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tag3</title>
+      <link>https://krgrwm.github.io/tags/tag3/</link>
+      <pubDate>Sun, 20 May 2018 15:35:46 +0900</pubDate>
+      
+      <guid>https://krgrwm.github.io/tags/tag3/</guid>
       <description></description>
     </item>
     
