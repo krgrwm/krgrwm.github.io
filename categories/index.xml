@@ -1,35 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>krgrwm&#39;s site</title>
-    <link>https://krgrwm.github.io/categories/</link>
-    <description>Recent content on krgrwm&#39;s site</description>
+    <title>Categories on My New Hugo Site</title>
+    <link>http://kurageruwm.github.io/categories/</link>
+    <description>Recent content in Categories on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 31 May 2018 21:24:59 +0900</lastBuildDate>
+    <language>ja-jp</language>
     
-	<atom:link href="https://krgrwm.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://kurageruwm.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Water Simulation</title>
-      <link>https://krgrwm.github.io/post/water-simulation/</link>
-      <pubDate>Thu, 31 May 2018 21:24:59 +0900</pubDate>
-      
-      <guid>https://krgrwm.github.io/post/water-simulation/</guid>
-      <description>aaa test
-bbb anoteuh</description>
-    </item>
-    
-    <item>
-      <title>Water Simulation</title>
-      <link>https://krgrwm.github.io/post/water-simulation/</link>
-      <pubDate>Thu, 31 May 2018 21:24:59 +0900</pubDate>
-      
-      <guid>https://krgrwm.github.io/post/water-simulation/</guid>
-      <description>aaa test
-bbb anoteuh</description>
-    </item>
     
   </channel>
 </rss>
