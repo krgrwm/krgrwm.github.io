@@ -17,7 +17,8 @@
       <pubDate>Wed, 21 Nov 2018 22:10:49 +0900</pubDate>
       
       <guid>https://krgrwm.github.io/post/fitting/</guid>
-      <description>antoehu $ x^10 $</description>
+      <description>\begin{eqnarray} a = b + c\\
+d = e + d \end{eqnarray}</description>
     </item>
     
   </channel>
