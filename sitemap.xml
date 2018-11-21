@@ -3,28 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://krgrwm.github.io/posts/test/</loc>
+    <loc>https://krgrwm.github.io/posts/test/</loc>
     <lastmod>2018-11-11T21:57:29+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krgrwm.github.io/categories/</loc>
+    <loc>https://krgrwm.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://krgrwm.github.io/posts/</loc>
+    <loc>https://krgrwm.github.io/posts/</loc>
     <lastmod>2018-11-11T21:57:29+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://krgrwm.github.io/tags/</loc>
+    <loc>https://krgrwm.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://krgrwm.github.io/</loc>
+    <loc>https://krgrwm.github.io/</loc>
     <lastmod>2018-11-11T21:57:29+09:00</lastmod>
     <priority>0</priority>
   </url>

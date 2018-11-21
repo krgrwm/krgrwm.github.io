@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on y New Site</title>
-    <link>http://krgrwm.github.io/posts/</link>
+    <link>https://krgrwm.github.io/posts/</link>
     <description>Recent content in Posts on y New Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Sun, 11 Nov 2018 21:57:29 +0900</lastBuildDate>
     
-	<atom:link href="http://krgrwm.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://krgrwm.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Test</title>
-      <link>http://krgrwm.github.io/posts/test/</link>
+      <link>https://krgrwm.github.io/posts/test/</link>
       <pubDate>Sun, 11 Nov 2018 21:57:29 +0900</pubDate>
       
-      <guid>http://krgrwm.github.io/posts/test/</guid>
+      <guid>https://krgrwm.github.io/posts/test/</guid>
       <description>てｓｔです</description>
     </item>
     
