@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>y New Site</title>
-    <link>https://krgrwm.github.io/</link>
-    <description>Recent content on y New Site</description>
+    <title>Posts on y New Site</title>
+    <link>https://krgrwm.github.io/post/</link>
+    <description>Recent content in Posts on y New Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Wed, 21 Nov 2018 22:10:49 +0900</lastBuildDate>
     
-	<atom:link href="https://krgrwm.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://krgrwm.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
