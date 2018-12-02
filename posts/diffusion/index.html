@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>1次元拡散方程式のシミュレーション | krgr&#39;s programming memo</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS",
+            TagSide: "left"
+          },
+
+          Macros:{
+             Par:  ['{\\frac{\\partial #1}{\\partial #2}}', 2],
+             Parn: ['{\\frac{\\partial^{#3} #1}{\\partial #2^{#3}}}', 3],
+          },
+        },
+
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        displayAlign: "left",
+        displayIndent: "4em",
+    });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/posts/">posts</a></li>
+      
+      <li><a href="/prog/">program</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">1次元拡散方程式のシミュレーション</span></h1>
+
+<h2 class="date">2018/12/02</h2>
+</div>
+
+<main>
+
+	<nav id="TableOfContents">
+<ul>
+<li><a href="#概要">概要</a></li>
+<li><a href="#差分法">差分法</a></li>
+<li><a href="#初期状態-u-x-0-を有限項のフーリエ級数で近似">初期状態$u(x,0)$を有限項のフーリエ級数で近似</a>
+<ul>
+<li><a href="#変数分離">変数分離</a></li>
+<li><a href="#境界条件の適用">境界条件の適用</a></li>
+</ul></li>
+</ul>
+</nav>
+	<hr sizer="1", color="#333333">
+	
+
+<h1 id="概要">概要</h1>
+
+<p><a href="/prog/diffusion">typescriptによるシミュレーション</a></p>
+
+<p>typescriptの勉強も兼ねて一次元拡散方程式のシミュレーションプログラムを作成した．
+次の式を数値的に解いた．</p>
+
+<p>\begin{align}
+&amp;\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2}  ~~~~~~~~0 &lt; x &lt; 1 ~~~~~ 0 &lt; t &lt; \infty \label{eq:deq} \\<br />
+&amp;u(0, t) = 0 \label{eq:bcond} \\<br />
+&amp;u(1, t) = 0 \\<br />
+&amp;u(x, 0) = f(x) ~~~(マウスで描いた曲線を与える)
+\end{align}</p>
+
+<p>計算方法は次の2つの方法を用いた．</p>
+
+<ol>
+<li>差分法</li>
+<li>初期状態$u(x,0)$を有限項のフーリエ級数で近似</li>
+</ol>
+
+<h1 id="差分法">差分法</h1>
+
+<p>式\eqref{eq:deq}の左辺を差分化する．
+\begin{equation}
+  \Par{u}{t} \to \frac{u(x, t+dt) - u(x, t)}{dt}  \nonumber
+\end{equation}</p>
+
+<p>式\eqref{eq:deq}の右辺は前進差分，後退差分を用いて
+\begin{align}
+  \Parn{u}{x}{2}
+  &amp;\to \Par{}{x} \frac{u(x+dx, t) - u(x, t)}{dx} \nonumber \\<br />
+  &amp;= \frac{[u(x+dx, t) - u(x, t)] - [ u(x, t) - u(x-dx, t) ]}{dx^2} \nonumber \\<br />
+  &amp;= \frac{u(x+dx, t) + u(x-dx, t) - 2u(x, t) }{dx^2} \nonumber
+\end{align}
+となる．</p>
+
+<p>注意として安定性条件
+\begin{equation}
+\frac{dt}{dx^2} \leq \frac{1}{2} \nonumber
+\end{equation}
+を満たさないと数値解が発散する．</p>
+
+<h1 id="初期状態-u-x-0-を有限項のフーリエ級数で近似">初期状態$u(x,0)$を有限項のフーリエ級数で近似</h1>
+
+<p>式\eqref{eq:deq}の境界条件では変数分離によって解析解が得られる．
+解はフーリエ級数(無限級数)で表されるため，シミュレーションでは有限項までの和で近似する．</p>
+
+<h2 id="変数分離">変数分離</h2>
+
+<p>$u(x,t)$が
+\begin{equation}
+u(x, t) = X(x) T(t) \nonumber
+\end{equation}
+の形をしているとする．
+式\eqref{eq:deq}に代入して，
+\begin{align}
+X(x) T(t)&rsquo; = X(x)^{\prime \prime} T(t) \nonumber \\<br />
+\frac{T(t)^{\prime}}{T(t)} = \frac{X(x)^{\prime \prime}}{X(x)} \label{eq:sep} \nonumber \\<br />
+\end{align}</p>
+
+<p>式\eqref{eq:sep}の左辺は時刻tのみに，右辺はxのみに依存しているため，
+両辺はtとxに依存しない定数となる．
+この定数を$k$とおくと，
+\begin{align}
+\frac{T(t)^{\prime}}{T(t)} = \frac{X(x)^{\prime \prime}}{X(x)} = k \nonumber \\<br />
+\end{align}
+なので，
+\begin{align}
+T(t)^{\prime} - k T(t) = 0 \nonumber \\\
+X(x)^{\prime \prime} - k X(x) = 0 \nonumber
+\end{align}
+となる．
+それぞれ解くと，</p>
+
+<p>\begin{align}
+T(t) = A \exp (k t) \nonumber \\<br />
+X(x) = A \sin( \sqrt{k} x) + B \cos( \sqrt{k} x )
+\end{align}</p>
+
+<p>ここで$k &lt; 0$の場合，$t \to \infty$で$T(t) \to \infty$となってしまうため，
+$k &gt; 0$とし，
+\begin{equation}
+k = -\lambda^2 \nonumber
+\end{equation}
+とおく．</p>
+
+<p>$T(t), X(x)$を$\lambda$で書き直すと
+\begin{align}
+T(t) = A \exp (- \lambda^2 t) \nonumber \nonumber \\<br />
+X(x) = A \sin( \lambda x) + B \cos( \lambda x ) \nonumber
+\end{align}
+となる．</p>
+
+<h2 id="境界条件の適用">境界条件の適用</h2>
+
+<p>境界条件\eqref{eq:bcond}より，</p>
+
+<p>\begin{align}
+u(0, t) = B \exp(-\lambda^2 t) = 0 ~~~~&amp;\to ~~~~ B = 0 \nonumber \\<br />
+u(1, t) = A \exp(-\lambda^2 t) \sin(\lambda) = 0 ~~~~&amp;\to ~~~~ \sin(\lambda) = 0. \nonumber \\<br />
+\end{align}</p>
+
+<p>$\sin(\lambda) = 0$より
+\begin{equation}
+\lambda = \lambda_n = \pm n \pi ~~~~ n = 1, 2, 3, &hellip;
+\end{equation}
+となる．</p>
+
+<p>まとめると解は
+\begin{equation}
+u_n (x, t) = A_n e^{- (n \pi)^2 t } \sin (n \pi x) ~~~~ n = 1, 2, 3, &hellip;
+\label{eq: fund}
+\end{equation}
+となる．
+拡散方程式は線形であるので，解\eqref{eq: fund}の重ね合わせ
+\begin{equation}
+u (x, t) = \sum _{n=1}  ^{\infty} A_n e^{- (n \pi)^2 t } \sin (n \pi x)
+\end{equation}
+も解となる．
+初期状態は
+\begin{equation}
+u (x, 0) = \sum _{n=1}  ^{\infty} A_n \sin (n \pi x)
+\end{equation}
+とフーリエ級数で表される．</p>
+
+</main>
+
+  <footer>
+  
+  
+  </footer>
+  </body>
+</html>

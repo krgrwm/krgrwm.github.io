@@ -1,9 +1,102 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja-jp">
   <head>
-    <script src="https://pixijs.download/release/pixi.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.3/dat.gui.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>1次元拡散方程式のシミュレーション | krgr&#39;s programming memo</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS",
+            TagSide: "left"
+          },
+
+          Macros:{
+             Par:  ['{\\frac{\\partial #1}{\\partial #2}}', 2],
+             Parn: ['{\\frac{\\partial^{#3} #1}{\\partial #2^{#3}}}', 3],
+          },
+        },
+
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        displayAlign: "left",
+        displayIndent: "4em",
+    });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   </head>
+
   <body>
-    <script type="text/javascript" src="./bundle.js"></script>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/posts/">posts</a></li>
+      
+      <li><a href="/prog/">program</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">1次元拡散方程式のシミュレーション</span></h1>
+
+<h2 class="date">2018/12/02</h2>
+</div>
+
+<main>
+
+	<nav id="TableOfContents">
+<ul>
+<li><a href="#概要">概要</a></li>
+<li><a href="#操作">操作</a></li>
+</ul>
+</nav>
+	<hr sizer="1", color="#333333">
+	
+
+<p>TODO: マウスドラッグ中に画面外に出たときの処理を追加する</p>
+
+<h1 id="概要">概要</h1>
+
+<p>拡散方程式のシミュレーションを行う．
+マウスで描いた曲線を初期状態とする．</p>
+
+<p>水色の曲線: 差分法による数値解<br />
+赤色の曲線: フーリエ級数展開による近似解</p>
+
+<h1 id="操作">操作</h1>
+
+<ul>
+<li><p>初期状態の曲線を描く<br />
+左クリック+ドラッグ</p></li>
+
+<li><p>シミュレーション開始<br />
+ページ右上のrun</p></li>
+
+<li><p>初期状態を有限項のフーリエ級数展開したときの項数<br />
+ページ右上のfourierDegree</p></li>
+
+<li><p>差分法の時間ステップdt<br />
+ページ右上のdt</p></li>
+</ul>
+
+<head>
+	<script src="https://pixijs.download/release/pixi.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.3/dat.gui.js"></script>
+</head>
+<div class="program">
+	<script type="text/javascript" src="/sprog/diffusion/bundle.js"></script>
+</div>
+
+
+</main>
+
+  <footer>
+  
+  
+  </footer>
   </body>
 </html>

@@ -1,40 +1,52 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title></title>
-    <link>/</link>
-    <description>Recent content on </description>
+    <title>krgr&#39;s programming memo</title>
+    <link>https://krgrwm.github.io/</link>
+    <description>Recent content on krgr&#39;s programming memo</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 02 Dec 2018 14:40:08 +0900</lastBuildDate>
+    <language>ja-jp</language>
+    <lastBuildDate>Sun, 02 Dec 2018 19:58:53 +0900</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://krgrwm.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>1次元拡散方程式のシミュレーション</title>
-      <link>/prog/diffusion/</link>
-      <pubDate>Sun, 02 Dec 2018 14:40:08 +0900</pubDate>
+      <link>https://krgrwm.github.io/prog/diffusion/</link>
+      <pubDate>Sun, 02 Dec 2018 19:58:53 +0900</pubDate>
       
-      <guid>/prog/diffusion/</guid>
-      <description>概要 typescriptによるシミュレーション
-typescriptの勉強も兼ねて一次元拡散方程式のシミュレーションプログラムを作成した． 次の式を数値的に解いた．
-\begin{align} &amp;amp;\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} ~~~~~~~~0 &amp;lt; x &amp;lt; 1 ~~~~~ 0 &amp;lt; t &amp;lt; \infty \label{eq:deq} \\
-&amp;amp;u(0, t) = 0 \\
-&amp;amp;u(1, t) = 0 \\
-&amp;amp;u(x, 0) = f(x) ~~~(マウスで描いた曲線を与える) \end{align}
-計算方法 次の2つの方法で計算した．
- 差分法 $u(x,0)$を有限項のフーリエ級数で近似  $u(x,0)$を有限項のフーリエ級数で近似 \eqref{eq:deq}</description>
+      <guid>https://krgrwm.github.io/prog/diffusion/</guid>
+      <description> TODO: マウスドラッグ中に画面外に出たときの処理を追加する
+概要 拡散方程式のシミュレーションを行う． マウスで描いた曲線を初期状態とする．
+水色の曲線: 差分法による数値解
+赤色の曲線: フーリエ級数展開による近似解
+操作  初期状態の曲線を描く
+左クリック+ドラッグ
+ シミュレーション開始
+ページ右上のrun
+ 初期状態を有限項のフーリエ級数展開したときの項数
+ページ右上のfourierDegree
+ 差分法の時間ステップdt
+ページ右上のdt
+  </description>
     </item>
     
     <item>
-      <title>Fitting</title>
-      <link>/posts/fitting/</link>
-      <pubDate>Wed, 21 Nov 2018 22:10:49 +0900</pubDate>
+      <title>1次元拡散方程式のシミュレーション</title>
+      <link>https://krgrwm.github.io/posts/diffusion/</link>
+      <pubDate>Sun, 02 Dec 2018 14:40:08 +0900</pubDate>
       
-      <guid>/posts/fitting/</guid>
-      <description>todo 漸化式からの式変形 Aw Aw
-\begin{eqnarray} a = b + c\\
-d = e + d \end{eqnarray}</description>
+      <guid>https://krgrwm.github.io/posts/diffusion/</guid>
+      <description>概要 typescriptによるシミュレーション
+typescriptの勉強も兼ねて一次元拡散方程式のシミュレーションプログラムを作成した． 次の式を数値的に解いた．
+\begin{align} &amp;amp;\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} ~~~~~~~~0 &amp;lt; x &amp;lt; 1 ~~~~~ 0 &amp;lt; t &amp;lt; \infty \label{eq:deq} \\
+&amp;amp;u(0, t) = 0 \label{eq:bcond} \\
+&amp;amp;u(1, t) = 0 \\
+&amp;amp;u(x, 0) = f(x) ~~~(マウスで描いた曲線を与える) \end{align}
+計算方法は次の2つの方法を用いた．
+ 差分法 初期状態$u(x,0)$を有限項のフーリエ級数で近似  差分法 式\eqref{eq:deq}の左辺を差分化する． \begin{equation} \Par{u}{t} \to \frac{u(x, t+dt) - u(x, t)}{dt} \nonumber \end{equation}
+式\eqref{eq:deq}の右辺は前進差分，後退差分を用いて \begin{align} \Parn{u}{x}{2} &amp;amp;\to \Par{}{x} \frac{u(x+dx, t) - u(x, t)}{dx} \nonumber \\</description>
     </item>
     
   </channel>

@@ -3,37 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/prog/diffusion/</loc>
+    <loc>https://krgrwm.github.io/prog/diffusion/</loc>
+    <lastmod>2018-12-02T19:58:53+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://krgrwm.github.io/posts/diffusion/</loc>
     <lastmod>2018-12-02T14:40:08+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/fitting/</loc>
-    <lastmod>2018-11-21T22:10:49+09:00</lastmod>
+    <loc>https://krgrwm.github.io/</loc>
+    <lastmod>2018-12-02T19:58:53+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://krgrwm.github.io/posts/</loc>
     <lastmod>2018-12-02T14:40:08+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/</loc>
-    <lastmod>2018-11-21T22:10:49+09:00</lastmod>
+    <loc>https://krgrwm.github.io/prog/</loc>
+    <lastmod>2018-12-02T19:58:53+09:00</lastmod>
   </url>
   
   <url>
-    <loc>/prog/</loc>
-    <lastmod>2018-12-02T14:40:08+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
+    <loc>https://krgrwm.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://krgrwm.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   
