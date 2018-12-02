@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>krgr&#39;s programming memo</title>
-    <link>https://krgrwm.github.io/</link>
-    <description>Recent content on krgr&#39;s programming memo</description>
+    <title>Progs on krgr&#39;s programming memo</title>
+    <link>https://krgrwm.github.io/prog/</link>
+    <description>Recent content in Progs on krgr&#39;s programming memo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Sun, 02 Dec 2018 14:40:08 +0900</lastBuildDate>
     
-	<atom:link href="https://krgrwm.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://krgrwm.github.io/prog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -25,17 +25,6 @@ typescriptの勉強も兼ねて一次元拡散方程式のシミュレーショ�
 &amp;amp;u(x, 0) = マウス入力 \end{align}
 計算方法 次の2つの方法で計算した．
  差分法 初期状態 $u(x,0)$のフーリエ級数を有限項までで近似  </description>
-    </item>
-    
-    <item>
-      <title>Fitting</title>
-      <link>https://krgrwm.github.io/post/fitting/</link>
-      <pubDate>Wed, 21 Nov 2018 22:10:49 +0900</pubDate>
-      
-      <guid>https://krgrwm.github.io/post/fitting/</guid>
-      <description>todo 漸化式からの式変形 Aw Aw
-\begin{eqnarray} a = b + c\\
-d = e + d \end{eqnarray}</description>
     </item>
     
   </channel>
