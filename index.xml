@@ -1,38 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>krgr&#39;s programming memo</title>
-    <link>https://krgrwm.github.io/</link>
-    <description>Recent content on krgr&#39;s programming memo</description>
+    <title></title>
+    <link>/</link>
+    <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-jp</language>
     <lastBuildDate>Sun, 02 Dec 2018 14:40:08 +0900</lastBuildDate>
     
-	<atom:link href="https://krgrwm.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>1次元拡散方程式のシミュレーション</title>
-      <link>https://krgrwm.github.io/prog/diffusion/</link>
+      <link>/prog/diffusion/</link>
       <pubDate>Sun, 02 Dec 2018 14:40:08 +0900</pubDate>
       
-      <guid>https://krgrwm.github.io/prog/diffusion/</guid>
-      <description> 概要 typescriptによるシミュレーション
+      <guid>/prog/diffusion/</guid>
+      <description>概要 typescriptによるシミュレーション
 typescriptの勉強も兼ねて一次元拡散方程式のシミュレーションプログラムを作成した． 次の式を数値的に解いた．
-\begin{align} &amp;amp;\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} ~~~~~~~~0 &amp;lt; x &amp;lt; 1 ~~~~~ 0 &amp;lt; t &amp;lt; \infty \\
+\begin{align} &amp;amp;\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} ~~~~~~~~0 &amp;lt; x &amp;lt; 1 ~~~~~ 0 &amp;lt; t &amp;lt; \infty \label{eq:deq} \\
 &amp;amp;u(0, t) = 0 \\
 &amp;amp;u(1, t) = 0 \\
-&amp;amp;u(x, 0) = マウス入力 \end{align}
+&amp;amp;u(x, 0) = f(x) ~~~(マウスで描いた曲線を与える) \end{align}
 計算方法 次の2つの方法で計算した．
- 差分法 初期状態 $u(x,0)$のフーリエ級数を有限項までで近似  </description>
+ 差分法 $u(x,0)$を有限項のフーリエ級数で近似  $u(x,0)$を有限項のフーリエ級数で近似 \eqref{eq:deq}</description>
     </item>
     
     <item>
       <title>Fitting</title>
-      <link>https://krgrwm.github.io/post/fitting/</link>
+      <link>/posts/fitting/</link>
       <pubDate>Wed, 21 Nov 2018 22:10:49 +0900</pubDate>
       
-      <guid>https://krgrwm.github.io/post/fitting/</guid>
+      <guid>/posts/fitting/</guid>
       <description>todo 漸化式からの式変形 Aw Aw
 \begin{eqnarray} a = b + c\\
 d = e + d \end{eqnarray}</description>
