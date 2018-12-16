@@ -6,10 +6,43 @@
     <description>Recent content on krgr&#39;s programming memo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 02 Dec 2018 19:58:53 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 09 Dec 2018 20:42:41 +0900</lastBuildDate>
     
 	<atom:link href="https://krgrwm.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Water Simulation</title>
+      <link>https://krgrwm.github.io/posts/water-simulation/</link>
+      <pubDate>Sun, 09 Dec 2018 20:42:41 +0900</pubDate>
+      
+      <guid>https://krgrwm.github.io/posts/water-simulation/</guid>
+      <description>書きかけ
+概要 セルオートマトンを用いて2次元の水のシミュレーションをした．
+[シミュレーション]()
+このシミュレーションのアルゴリズムは次のサイトによるものである．
+参考サイト: https://w-shadow.com/blog/2009/09/01/simple-fluid-simulation/
+アルゴリズム 系は格子状に並んだセルで構成される．
+1つ1つのセルは水を含むことができる． 水の量は連続値を取り，$0 \leq M \leq M_{max}$ とする．
+最初に単純なアルゴリズムを説明し， 次にそれを改良したものを説明する．
+単純なアルゴリズム セルの近傍はノイマン近傍とする．
+時間ステップ$n$でのセルの持つ水の量を$M^{(n)}$と表記する． 近傍(上下左右)のセルの持つ水の量を $M^{(n)}{\uparrow}$ $M^{(n)}{\downarrow}$ $M^{(n)}{\gets}$ $M^{(n)}{\to}$ と表記する．
+次のルールを1つのセルに順番に適用し，すべてのセルを更新する． ルールを適用するセルを中心のセルと呼ぶ． 1. 水の落下
+次の時間ステップで中心と下のセルが平衡状態に達するように水の流出量を計算する．
+つまり，次の時間ステップで下のセルの水量が最大値になるようにする． TODO: 図を乗せる
+ $M^{(n)}{\downarrow} \ge M{max}$の場合
+下のセルはこれ以上水を含めないので，水は落下できない
+$M^{(n+1&amp;frasl;2)} = M^{(n)}$
+$M^{(n+1&amp;frasl;2)}{\uparrow} = M^{(n)}{\uparrow}$
+$M^{(n+1&amp;frasl;2)}{\downarrow} = M^{(n)}{\downarrow}$
+$M^{(n+1&amp;frasl;2)}{\gets} = M^{(n)}{\gets}$
+$M^{(n+1&amp;frasl;2)}{\to} = M^{(n)}{\to}$
+ $M^{(n)}{\downarrow} &amp;lt; M{max}$の場合
+水を下のセルに落下させる
+$M^{(n+1&amp;frasl;2)} = M^{(n)} - (M{max}-M{\downarrow}^{(n)})$
+$M^{(n+1&amp;frasl;2)}{\downarrow} = M{max}$
+$M^{(n+1&amp;frasl;2)}{\uparrow} = M^{(n)}{\uparrow}$</description>
+    </item>
     
     <item>
       <title>1次元拡散方程式のシミュレーション</title>

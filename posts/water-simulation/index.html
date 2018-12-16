@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Water Simulation | krgr&#39;s programming memo</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS",
+            TagSide: "left"
+          },
+
+          Macros:{
+             Par:  ['{\\frac{\\partial #1}{\\partial #2}}', 2],
+             Parn: ['{\\frac{\\partial^{#3} #1}{\\partial #2^{#3}}}', 3],
+          },
+        },
+
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        displayAlign: "left",
+        displayIndent: "4em",
+    });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/posts/">Home</a></li>
+      
+      <li><a href="/prog/">program</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Water Simulation</span></h1>
+
+<h2 class="date">2018/12/09</h2>
+</div>
+
+<main>
+
+	<nav id="TableOfContents">
+<ul>
+<li><a href="#概要">概要</a></li>
+<li><a href="#アルゴリズム">アルゴリズム</a>
+<ul>
+<li><a href="#単純なアルゴリズム">単純なアルゴリズム</a></li>
+<li><a href="#単純なアルゴリズム-水の上昇">単純なアルゴリズム+水の上昇</a></li>
+</ul></li>
+</ul>
+</nav>
+	<hr sizer="1", color="#333333">
+	
+
+<p><strong>書きかけ</strong></p>
+
+<h1 id="概要">概要</h1>
+
+<p>セルオートマトンを用いて2次元の水のシミュレーションをした．</p>
+
+<p>[シミュレーション]()</p>
+
+<p>このシミュレーションのアルゴリズムは次のサイトによるものである．<br />
+参考サイト: <a href="https://w-shadow.com/blog/2009/09/01/simple-fluid-simulation/">https://w-shadow.com/blog/2009/09/01/simple-fluid-simulation/</a></p>
+
+<h1 id="アルゴリズム">アルゴリズム</h1>
+
+<p>系は格子状に並んだセルで構成される．</p>
+
+<p>1つ1つのセルは水を含むことができる．
+水の量は連続値を取り，$0 \leq M \leq M_{max}$
+とする．</p>
+
+<p>最初に単純なアルゴリズムを説明し，
+次にそれを改良したものを説明する．</p>
+
+<h2 id="単純なアルゴリズム">単純なアルゴリズム</h2>
+
+<p>セルの近傍はノイマン近傍とする．</p>
+
+<p>時間ステップ$n$でのセルの持つ水の量を$M^{(n)}$と表記する．
+近傍(上下左右)のセルの持つ水の量を
+$M^{(n)}<em>{\uparrow}$
+$M^{(n)}</em>{\downarrow}$
+$M^{(n)}<em>{\gets}$
+$M^{(n)}</em>{\to}$
+と表記する．</p>
+
+<p>次のルールを1つのセルに順番に適用し，すべてのセルを更新する．
+ルールを適用するセルを中心のセルと呼ぶ．
+1. 水の落下<br />
+次の時間ステップで中心と下のセルが平衡状態に達するように水の流出量を計算する．<br />
+つまり，次の時間ステップで下のセルの水量が最大値になるようにする．
+TODO: 図を乗せる</p>
+
+<ul>
+<li><p>$M^{(n)}<em>{\downarrow} \ge M</em>{max}$の場合<br />
+下のセルはこれ以上水を含めないので，水は落下できない<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)} = M^{(n)}$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}<em>{\uparrow} = M^{(n)}</em>{\uparrow}$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}<em>{\downarrow} = M^{(n)}</em>{\downarrow}$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}<em>{\gets} = M^{(n)}</em>{\gets}$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}<em>{\to} = M^{(n)}</em>{\to}$</p></li>
+
+<li><p>$M^{(n)}<em>{\downarrow} &lt; M</em>{max}$の場合<br />
+水を下のセルに落下させる<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)} = M^{(n)} - (M<em>{max}-M</em>{\downarrow}^{(n)})$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}<em>{\downarrow} = M</em>{max}$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}<em>{\uparrow} = M^{(n)}</em>{\uparrow}$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}<em>{\gets} = M^{(n)}</em>{\gets}$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}<em>{\to} = M^{(n)}</em>{\to}$</p></li>
+</ul>
+
+<ol>
+<li>左右のセルへの水の流出(拡散)<br />
+次の時間ステップで左右と中心のセルが平衡状態に達するように水の流出量を計算する．
+つまり，次の時間ステップで左右，中心のセルの水量が等しくなる(平均値になる)ようにする．</li>
+</ol>
+
+<p>左右と中心の3つのセルの水量の平均を$M<em>{ave} = (M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)} + M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}</em>{\gets} + M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}<em>{\to})/3$とする．
+  - $M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)} \le M</em>{ave}$の場合<br />
+  水は左右へ流れ出ず，逆に左右から流れ込んでくる状況なので何もしない．<br />
+  $M^{(n+1)} = M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}$<br />
+  $M^{(n+1)}<em>{\uparrow} = M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}</em>{\uparrow}$<br />
+  $M^{(n+1)}<em>{\downarrow} = M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}</em>{\downarrow}$<br />
+  $M^{(n+1)}<em>{\gets} = M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}</em>{\gets}$<br />
+  $M^{(n+1)}<em>{\to} = M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}</em>{\to}$</p>
+
+<ul>
+<li>$M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)} \ge M<em>{ave}$の場合<br />
+$\Delta M</em>{\gets} = max(0, M<em>{ave} - M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)}</em>{\gets})$<br />
+$\Delta M<em>{\to} = max(0, M</em>{ave} - M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)}<em>{\to})~~~~~~(負の場合は0としている)$<br />
+$M^{(n+1)}</em>{\gets} = M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}<em>{\gets} + \Delta M</em>{\gets}$<br />
+$M^{(n+1)}<em>{\to} = M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}</em>{\to} + \Delta M<em>{\to}$<br />
+$M^{(n+1)} = M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)} - \Delta M</em>{\to} - \Delta M<em>{\gets}$<br />
+$M^{(n+1)}</em>{\uparrow} = M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}<em>{\uparrow}$<br />
+$M^{(n+1)}</em>{\downarrow} = M^{(n+<sup>1</sup>&frasl;<sub>2</sub>)}_{\downarrow}$</li>
+</ul>
+
+<h2 id="単純なアルゴリズム-水の上昇">単純なアルゴリズム+水の上昇</h2>
+
+<p>単純なアルゴリズムでは水は自身のセルより高い位置には移動しない．
+このため２つの柱をつなげた構造(連通管というみたい)に水を入れると下図のようになる．
+しかし実際の液体では2つの柱の水の高さは等しくなる(パスカルの原理から)．
+そこで水を圧縮性流体とし水が上昇できるようにする．</p>
+
+<p>単純なアルゴリズムのステップ1を修正し，さらに新たに水を上昇させるステップを加える．
+圧縮されていない水量の最大値を$M_{max}$とする．
+また，セルの水量に次の条件を加える．</p>
+
+<p>[水量の上限]セルは最大で$上のセルの水量+M_{c}$だけの水量を含むことができるとする．</p>
+
+<ol>
+<li><p>水の落下<br />
+次の時間ステップで中心と下のセルが平衡状態に達するように水の流出量を計算する．<br />
+$T=M^{(n)} + M^{(n)}_{\downarrow}$とおく．</p>
+
+<ul>
+<li><p>$T \le M<em>{max}$の場合<br />
+平衡状態は中心のセルの水がすべて落下した状態なので<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)} = 0$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)}</em>{\downarrow} = M^{(n)} + M^{(n)}_{\downarrow}$</p></li>
+
+<li><p>$M<em>{max} \lt T \le 2 M</em>{max} + M<em>c$の場合<br />
+平衡状態での下のセルの水量は最小で$M</em>{max}$，
+[水量の上限]から$M_{max}+M<em>c$となる．
+最小の場合と最大の場合を線形に結ぶと<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)}</em>{\downarrow} = M<em>{max} + \frac{M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)}}{M</em>{max}} M<em>c$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)} = T - M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)}</em>{\downarrow}$<br />
+これを解いて<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)}<em>{\downarrow} = (M</em>{max}^2 + M<em>c T)/(M</em>{max} + M<em>c)$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)} = T - M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)}</em>{\downarrow}$</p></li>
+
+<li><p>$2 M_{max} + M<em>c \lt T$の場合<br />
+$2 M</em>{max} + M<em>c \lt T$のため，平行状態では下のセルの水量は最小でも$M</em>{max}+M_c = M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)} + M_c$となる．さらに[水量の上限]から下のセルの水量の最大値は$M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)} + M<em>c$であるので<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)}</em>{\downarrow} = M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)} + M<em>c$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)} = T - M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)}</em>{\downarrow}$<br />
+これを解いて<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)}_{\downarrow} = (T + M<em>c)/2$<br />
+$M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)} = T - M^{(n+<sup>1</sup>&frasl;<sub>3</sub>)}</em>{\downarrow}$</p></li>
+</ul></li>
+
+<li><p>左右のセルへの水の流出(拡散)<br />
+単純なアルゴリズムと同じ</p></li>
+
+<li><p>水の上昇
+ステップ1とまったく同様に中心のセルと上のセルの平衡状態を考え計算する．
+つまりステップ1の計算式の$M<em>{\downarrow}$を$M$に，$M$を$M</em>{\uparrow}$に置き換える．</p></li>
+</ol>
+
+<p>図1
+図2</p>
+
+</main>
+
+  <footer>
+  
+  
+  </footer>
+  </body>
+</html>
